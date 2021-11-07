@@ -79,4 +79,7 @@ class Galil {
 		char ReadBuffer[1024];			// Buffer to restore responses from the Galil
 		double ControlParameters[3];	// Contains the controller gain values: K_p, K_i, K_d in that order 
 		int setPoint;					// Control Setpoint
+
+		//Added by me:
+		char command[128];	// String to store commands to be sent to Galil
 };

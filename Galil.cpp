@@ -26,9 +26,21 @@ using namespace System::IO;
 using namespace System::Collections::Generic;
 using namespace System::Threading::Tasks;
 
-Galil::Galil(EmbeddedFunctions* Funcs, GCStringIn address) // Constructor with EmbeddedFunciton initialization
+Galil::Galil() {}; // Default constructor (From James' first lab recording, it is left blank)
+
+Galil::Galil(EmbeddedFunctions* Funcs, GCStringIn address)	// Constructor with EmbeddedFunciton initialization
 {
 	Functions = Funcs;
 	Functions->GOpen(address, &g);
-
+}
+void Galil::DigitalOutput(uint16_t value)	// Write to all 16 bits of digital output, 1 command to the Galil
+{
+	//maybe use the command[128] I added, to send commands...
+}
+Galil::~Galil()
+{
+	if (g) {
+		Functions->GClose(g);
+	}
+	delete Functions;
 }
