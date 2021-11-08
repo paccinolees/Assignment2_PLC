@@ -110,7 +110,7 @@ uint8_t Galil::DigitalByteInput(bool bank)	// Read either high or low byte, as s
 			bitValue = atoi(ReadBuffer); 
 			result += pow(2, high_bitpos) * bitValue;
 
-			bitpos++;
+			high_bitpos++;
 		}
 	}
 	else {
