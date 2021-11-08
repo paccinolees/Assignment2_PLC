@@ -92,6 +92,36 @@ uint16_t Galil::DigitalInput()		// Return the 16 bits of input data Query the di
 		bitValue = atoi(ReadBuffer); // convert the decimal number to int (1.0000 --> 1) 
 		result += pow(2,bit) * bitValue; 
 	}
+	
+	return result;
+}
+
+uint8_t Galil::DigitalByteInput(bool bank)	// Read either high or low byte, as specified by user in 'bank' 0 = low, 1 = high
+{
+	uint8_t result = 0;
+	int bitValue;
+	int high_bitpos = 0; // bits position for the highbyte
+
+	if (bank) {
+		for (int bit = 8; bit < 16; bit++) {
+			sprintf_s(command, "MG @IN[%d]", bit);
+			Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
+
+			bitValue = atoi(ReadBuffer); 
+			result += pow(2, high_bitpos) * bitValue;
+
+			bitpos++;
+		}
+	}
+	else {
+		for (int bit = 0; bit < 8; bit++) {
+			sprintf_s(command, "MG @IN[%d]", bit);
+			Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
+
+			bitValue = atoi(ReadBuffer); 
+			result += pow(2, bit) * bitValue;
+		}
+	}
 	std::cout << result;
 	return result;
 }

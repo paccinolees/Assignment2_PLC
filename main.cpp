@@ -39,7 +39,10 @@ int main() {
 	//myGalil.DigitalBitOutput(1, 0);			// TEST: bit 0 becomes 1 (tested)
 	//myGalil.DigitalBitOutput(false, 0);		// TEST: bit 0 becomes 0 (tested)
 
-	myGalil.DigitalInput();		// TEST: Should return the 16bits of Digital Input to this function
+	//myGalil.DigitalInput();		// TEST: Should return the 16bits value of Digital Input to this function (tested)
+
+	myGalil.DigitalByteInput(1);	// TEST: Should return the 8bits value of highbyte if Digital Input
+	myGalil.DigitalByteInput(0);	// TEST: Should return the 8bits value of lowbyte if Digital Input
 
 	Console::ReadKey(); 
 	return 0;
