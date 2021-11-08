@@ -26,21 +26,43 @@ using namespace System::IO;
 using namespace System::Collections::Generic;
 using namespace System::Threading::Tasks;
 
-Galil::Galil() {}; // Default constructor (From James' first lab recording, it is left blank)
+Galil::Galil() // Default constructor. Initialize variables, open Galil connection and allocate memory.
+{
+	GCStringIn default_address = "192.168.0.120 -d";
+	g = 0;
+	EmbeddedFunctions Funcs;
+	Functions = &Funcs;
+	Functions->GOpen(default_address, &g);
+} 
 
 Galil::Galil(EmbeddedFunctions* Funcs, GCStringIn address)	// Constructor with EmbeddedFunciton initialization
 {
+	g = 0;
 	Functions = Funcs;
 	Functions->GOpen(address, &g);
 }
+
 void Galil::DigitalOutput(uint16_t value)	// Write to all 16 bits of digital output, 1 command to the Galil
 {
-	//maybe use the command[128] I added, to send commands...
+	// Extract the high/low bytes
+	uint8_t highByte = value >> 8;
+	uint8_t lowByte = value & 0xff;
+
+	// Generate the C-String command using stringstream
+	std::stringstream ss; 
+	ss << "OP" << lowByte << "," << highByte;
+	std::string tmpString = ss.str();
+	command = tmpString.c_str();
+
+	// Send command to Galil
+	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
 }
+
 Galil::~Galil()
 {
 	if (g) {
 		Functions->GClose(g);
 	}
 	delete Functions;
+	delete command;
 }
