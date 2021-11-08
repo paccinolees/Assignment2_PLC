@@ -96,7 +96,7 @@ uint16_t Galil::DigitalInput()		// Return the 16 bits of input data Query the di
 	return result;
 }
 
-uint8_t Galil::DigitalByteInput(bool bank)	// Read either high or low byte, as specified by user in 'bank' 0 = low, 1 = high
+uint8_t Galil::DigitalByteInput(bool bank)		// Read either high or low byte, as specified by user in 'bank' 0 = low, 1 = high
 {
 	uint8_t result = 0;
 	int bitValue;
@@ -124,6 +124,18 @@ uint8_t Galil::DigitalByteInput(bool bank)	// Read either high or low byte, as s
 	}
 	//printf("result:%d", result); //for testing purpose
 	return result;
+}
+
+bool Galil::DigitalBitInput(uint8_t bit)	// Read single bit from current digital inputs. Above functions may use this function (I didnt use cuz I did those first)
+{
+	int bitValue;
+
+	sprintf_s(command, "MG @IN[%d]", bit);
+	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
+	
+	bitValue = atoi(ReadBuffer);
+	printf("bitVal:%d", bitValue); //for testing purpose
+	return bitValue;
 }
 
 //-----------------------------------------------------//
