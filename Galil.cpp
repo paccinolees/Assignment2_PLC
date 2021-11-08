@@ -90,8 +90,8 @@ uint16_t Galil::DigitalInput()		// Return the 16 bits of input data Query the di
 
 		bitValue = atoi(ReadBuffer);
 		result += (2 ^ bit) * bitValue;
-		//std::cout << "bit:" << bit << std::endl; //FOR DEBUG
-		//std::cout << ReadBuffer << std::endl;
+		std::cout << "bit:" << bit << std::endl; //FOR DEBUG
+		std::cout << ReadBuffer << std::endl;
 	}
 	std::cout << result;
 	return result;
