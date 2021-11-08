@@ -74,6 +74,4 @@ Galil::~Galil()
 	if (g) {
 		Functions->GClose(g);
 	}
-	delete Functions;
-	delete command;
 }
