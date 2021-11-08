@@ -34,13 +34,14 @@ Galil::Galil() // Default constructor. Initialize variables, open Galil connecti
 	Functions = &Funcs;
 	Functions->GOpen(default_address, &g);
 } 
-
 Galil::Galil(EmbeddedFunctions* Funcs, GCStringIn address)	// Constructor with EmbeddedFunciton initialization
 {
 	g = 0;
 	Functions = Funcs;
 	Functions->GOpen(address, &g);
 }
+
+//-----------------DIGITAL OUTPUTS--------------------//
 
 void Galil::DigitalOutput(uint16_t value)	// Write to all 16 bits of digital output, 1 command to the Galil
 {
@@ -66,6 +67,14 @@ void Galil::DigitalByteOutput(bool bank, uint8_t value)		// Write to one byte, e
 
 	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
 }
+
+void Galil::DigitalBitOutput(bool val, uint8_t bit)		// Write single bit to digital outputs. 'bit' specifies which bit
+{
+	sprintf_s(command, "OB%d,%d", bit, val);
+	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
+}
+//-----------------------------------------------------//
+
 
 void Galil::AnalogOutput(uint8_t channel, double voltage)		// Write to any channel of the Galil, send voltages as 2 decimal place in the command string
 {

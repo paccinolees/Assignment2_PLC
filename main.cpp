@@ -31,10 +31,13 @@ int main() {
 	Galil myGalil(&FuncObj, address);
 
 
-	//myGalil.DigitalOutput(257); // TEST: bit 8 and 0 shud be 1 (tested)
+	//myGalil.DigitalOutput(257);	// TEST: bit 8 and 0 shud be 1 (tested)
 
-	myGalil.DigitalByteOutput(1, 8); // TEST: highbyte bits shud equal 8 while lowbyte unchanged
-	myGalil.DigitalByteOutput(0, 8); // TEST: vice versa...
+	//myGalil.DigitalByteOutput(1, 8);		// TEST: highbyte bits shud equal 8 while lowbyte unchanged (tested)
+	//myGalil.DigitalByteOutput(0, 8);		// TEST: vice versa... (tested)
+
+	myGalil.DigitalBitOutput(1, 0);			// TEST: bit 0 becomes 1
+	myGalil.DigitalBitOutput(false, 0);		//TEST: bit 0 becomes 0
 
 	return 0;
 };
