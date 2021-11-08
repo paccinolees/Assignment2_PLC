@@ -147,11 +147,11 @@ bool Galil::CheckSuccessfulWrite()	// Check the string response from the Galil t
 	char response = ReadBuffer[strlen(ReadBuffer) - 1];
 	if (response == ':') {
 		check = 1;
-		std::cout << "right" << std::endl;
+		//std::cout << "right" << std::endl; //for testing purpose
 	}
 	else {
 		check = 0;
-		std::cout << "wrong" << std::endl;
+		//std::cout << "wrong" << std::endl; //for testing purpose
 	}
 
 	return check;
