@@ -7,6 +7,7 @@
 #include <sstream>
 #include <stdio.h>
 #include <conio.h>
+#include <math.h> // for power function: pow()
 
 #include <iostream>
 #include <fstream>
@@ -81,20 +82,15 @@ void Galil::DigitalBitOutput(bool val, uint8_t bit)		// Write single bit to digi
 
 uint16_t Galil::DigitalInput()		// Return the 16 bits of input data Query the digital inputs of the GALIL, See Galil command library @IN
 {
-	uint16_t result = 0;
+	uint16_t result = 0; // will store the 16bits value as decimal
 	int bitValue;
 
 	for (int bit = 0; bit < 16; bit++) {
 		sprintf_s(command, "MG @IN[%d]", bit);
 		Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
 
-		bitValue = atoi(ReadBuffer);
-		result += (2 ^ bit) * bitValue;
-		std::cout << "bit:" << bit << std::endl; //FOR DEBUG
-		std::cout << ReadBuffer << std::endl;
-		std::cout << "ReadBuffer[2]:"<< ReadBuffer[2] << std::endl;
-		std::cout << "bitval:" << bitValue << std::endl;
-
+		bitValue = atoi(ReadBuffer); // convert the decimal number to int (1.0000 --> 1) 
+		result += pow(2,bit) * bitValue; 
 	}
 	std::cout << result;
 	return result;
