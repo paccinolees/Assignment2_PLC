@@ -49,11 +49,8 @@ void Galil::DigitalOutput(uint16_t value)	// Write to all 16 bits of digital out
 	uint8_t lowByte = value & 0xff;
 
 	// Generate the C-String command using stringstream
-	std::stringstream ss; 
-	ss << "OP" << lowByte << "," << highByte;
-	std::string tmpString = ss.str();
-	command = tmpString.c_str();
-
+	sprintf_s(command, "OP%d,%d", lowByte, highByte);
+	std::cout << command << std::endl; //for test
 	// Send command to Galil
 	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
 }

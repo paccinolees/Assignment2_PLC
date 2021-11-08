@@ -81,5 +81,5 @@ class Galil {
 		int setPoint;					// Control Setpoint
 
 		//Added by me:
-		const char* command;	// C-String to store commands to be sent to Galil
+		char command[128];	// C-String to store commands to be sent to Galil
 };
