@@ -122,7 +122,7 @@ uint8_t Galil::DigitalByteInput(bool bank)	// Read either high or low byte, as s
 			result += pow(2, bit) * bitValue;
 		}
 	}
-	std::cout << result;
+	std::cout << result << std::endl;
 	return result;
 }
 
