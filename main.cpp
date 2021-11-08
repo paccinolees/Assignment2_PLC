@@ -30,7 +30,7 @@ int main() {
 	EmbeddedFunctions FuncObj;
 	Galil myGalil(&FuncObj, address);
 
-	myGalil.DigitalOutput(130);
+	myGalil.DigitalOutput(257); // TEST: bit 8 and 0 shud be 1 (tested)
 
 	return 0;
 };
