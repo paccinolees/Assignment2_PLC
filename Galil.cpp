@@ -41,6 +41,7 @@ Galil::Galil(EmbeddedFunctions* Funcs, GCStringIn address)	// Constructor with E
 	Functions->GOpen(address, &g);
 }
 
+
 //-----------------DIGITAL OUTPUTS--------------------//
 
 void Galil::DigitalOutput(uint16_t value)	// Write to all 16 bits of digital output, 1 command to the Galil
@@ -75,6 +76,26 @@ void Galil::DigitalBitOutput(bool val, uint8_t bit)		// Write single bit to digi
 }
 //-----------------------------------------------------//
 
+
+//-----------------DIGITAL INPUTS--------------------//
+
+uint16_t Galil::DigitalInput()		// Return the 16 bits of input data Query the digital inputs of the GALIL, See Galil command library @IN
+{
+	ReadBuffer[0] = 0; // clear the string buffer
+
+	for (int bit = 0; bit < 16; bit++) {
+		sprintf_s(command, "MG @IN[%d]", bit);
+		Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
+
+		std::cout << "bit:" << bit << std::endl; //FOR DEBUG
+		std::cout << ReadBuffer << std::endl;
+	}
+	
+	uint16_t justRandom = 0;
+	return justRandom;
+}
+
+//-----------------------------------------------------//
 
 void Galil::AnalogOutput(uint8_t channel, double voltage)		// Write to any channel of the Galil, send voltages as 2 decimal place in the command string
 {

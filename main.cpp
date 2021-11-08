@@ -36,8 +36,10 @@ int main() {
 	//myGalil.DigitalByteOutput(1, 8);		// TEST: highbyte bits shud equal 8 while lowbyte unchanged (tested)
 	//myGalil.DigitalByteOutput(0, 8);		// TEST: vice versa... (tested)
 
-	myGalil.DigitalBitOutput(1, 0);			// TEST: bit 0 becomes 1
-	myGalil.DigitalBitOutput(false, 0);		//TEST: bit 0 becomes 0
+	//myGalil.DigitalBitOutput(1, 0);			// TEST: bit 0 becomes 1 (tested)
+	//myGalil.DigitalBitOutput(false, 0);		// TEST: bit 0 becomes 0 (tested)
+
+	myGalil.DigitalInput();		// TEST: Should return the 16bits of Digital Input to this function
 
 	return 0;
 };
