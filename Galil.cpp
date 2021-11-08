@@ -58,6 +58,16 @@ void Galil::DigitalOutput(uint16_t value)	// Write to all 16 bits of digital out
 	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
 }
 
+void Galil::AnalogOutput(uint8_t channel, double voltage)		// Write to any channel of the Galil, send voltages as 2 decimal place in the command string
+{
+
+}
+
+int Galil::ReadEncoder()	// Read from Encoder
+{
+
+}
+
 Galil::~Galil()
 {
 	if (g) {
