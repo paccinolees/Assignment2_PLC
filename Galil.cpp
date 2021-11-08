@@ -122,7 +122,7 @@ uint8_t Galil::DigitalByteInput(bool bank)	// Read either high or low byte, as s
 			result += pow(2, bit) * bitValue;
 		}
 	}
-	printf("result:%d", result);
+	//printf("result:%d", result); //for testing purpose
 	return result;
 }
 

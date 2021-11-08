@@ -26,8 +26,8 @@ using namespace System::Threading::Tasks;
 
 #define address "192.168.0.120 -d" // address of PLC
 
-int main() {//SHOULD BE EMPTY BEFORE ASSESSMENT WK11, CUZ THEY GON ASSESS THAT WE KNOW HOW TO INSTANTIATE CLASS etc..
-	EmbeddedFunctions FuncObj;
+int main() {//SHOULD BE EMPTY BEFORE ASSESSMENT WK11, CUZ THEY GON ASSESS THAT WE KNOW HOW TO INSTANTIATE CLASS etc.. (DONT FORGET TO REMEM)
+	EmbeddedFunctions FuncObj; 
 	Galil myGalil(&FuncObj, address);
 
 
@@ -41,9 +41,9 @@ int main() {//SHOULD BE EMPTY BEFORE ASSESSMENT WK11, CUZ THEY GON ASSESS THAT W
 
 	//myGalil.DigitalInput();		// TEST: Should return the 16bits value of Digital Input to this function (tested)
 
-	myGalil.DigitalByteInput(1);	// TEST: Should return the 8bits value of highbyte if Digital Input
-	myGalil.DigitalByteInput(0);	// TEST: Should return the 8bits value of lowbyte if Digital Input
-	std::cout << "done";
+	//myGalil.DigitalByteInput(1);	// TEST: Should return the 8bits value of highbyte if Digital Input (tested)
+	//myGalil.DigitalByteInput(0);	// TEST: Should return the 8bits value of lowbyte if Digital Input (tested)
+	
 	Console::ReadKey(); 
 	return 0;
 };
