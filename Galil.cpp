@@ -55,6 +55,18 @@ void Galil::DigitalOutput(uint16_t value)	// Write to all 16 bits of digital out
 	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
 }
 
+void Galil::DigitalByteOutput(bool bank, uint8_t value)		// Write to one byte, either high or low byte, as specified by user in 'bank' 0 = low, 1 = high
+{
+	if (bank) {
+		sprintf_s(command, "OP,%d", value);
+	}
+	else {
+		sprintf_s(command, "OP%d", value);
+	}
+
+	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
+}
+
 void Galil::AnalogOutput(uint8_t channel, double voltage)		// Write to any channel of the Galil, send voltages as 2 decimal place in the command string
 {
 

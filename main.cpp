@@ -30,7 +30,9 @@ int main() {
 	EmbeddedFunctions FuncObj;
 	Galil myGalil(&FuncObj, address);
 
-	myGalil.DigitalOutput(257); // TEST: bit 8 and 0 shud be 1 (tested)
+	//myGalil.DigitalOutput(257); // TEST: bit 8 and 0 shud be 1 (tested)
+	myGalil.DigitalByteOutput(1, 8); // TEST: highbyte bits shud equal 8 while lowbyte unchanged
+
 
 	return 0;
 };
