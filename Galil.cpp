@@ -88,11 +88,13 @@ uint16_t Galil::DigitalInput()		// Return the 16 bits of input data Query the di
 		sprintf_s(command, "MG @IN[%d]", bit);
 		Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
 
-		bitValue = atoi(ReadBuffer[2]);
+		bitValue = atoi(ReadBuffer);
 		result += (2 ^ bit) * bitValue;
 		std::cout << "bit:" << bit << std::endl; //FOR DEBUG
 		std::cout << ReadBuffer << std::endl;
-		std::cout << ReadBuffer[2] << std::endl;
+		std::cout << "ReadBuffer[2]:"<< ReadBuffer[2] << std::endl;
+		std::cout << "bitval:" << bitValue << std::endl;
+
 	}
 	std::cout << result;
 	return result;
