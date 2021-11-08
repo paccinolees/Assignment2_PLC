@@ -81,7 +81,7 @@ void Galil::DigitalBitOutput(bool val, uint8_t bit)		// Write single bit to digi
 
 uint16_t Galil::DigitalInput()		// Return the 16 bits of input data Query the digital inputs of the GALIL, See Galil command library @IN
 {
-	ReadBuffer[0] = 0; // clear the string buffer
+	//ReadBuffer[0] = 0; // clear the string buffer
 
 	for (int bit = 0; bit < 16; bit++) {
 		sprintf_s(command, "MG @IN[%d]", bit);
