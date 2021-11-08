@@ -134,7 +134,7 @@ bool Galil::DigitalBitInput(uint8_t bit)	// Read single bit from current digital
 	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
 	
 	bitValue = atoi(ReadBuffer);
-	printf("bitVal:%d", bitValue); //for testing purpose
+	//printf("bitVal:%d", bitValue); //for testing purpose
 	return bitValue;
 }
 
