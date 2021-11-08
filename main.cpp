@@ -41,5 +41,6 @@ int main() {
 
 	myGalil.DigitalInput();		// TEST: Should return the 16bits of Digital Input to this function
 
+	Console::ReadKey(); 
 	return 0;
 };
