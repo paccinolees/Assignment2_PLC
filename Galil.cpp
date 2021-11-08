@@ -66,6 +66,7 @@ void Galil::AnalogOutput(uint8_t channel, double voltage)		// Write to any chann
 int Galil::ReadEncoder()	// Read from Encoder
 {
 
+	return 0;
 }
 
 Galil::~Galil()
