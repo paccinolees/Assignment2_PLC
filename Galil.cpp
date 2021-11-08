@@ -140,6 +140,13 @@ bool Galil::DigitalBitInput(uint8_t bit)	// Read single bit from current digital
 
 //-----------------------------------------------------//
 
+bool Galil::CheckSuccessfulWrite()	// Check the string response from the Galil to check that the last command executed correctly. 1 = succesful. NOT AUTOMARKED
+{
+	std::cout << ReadBuffer << std::endl; //just testing
+
+	return 0;
+}
+
 void Galil::AnalogOutput(uint8_t channel, double voltage)		// Write to any channel of the Galil, send voltages as 2 decimal place in the command string
 {
 
