@@ -1,4 +1,4 @@
-#include <Windows.h>
+/*#include <Windows.h>
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -9,7 +9,7 @@
 
 #include <iostream>
 #include <fstream>
-#include <string>
+#include <string>*/
 
 #include <Galil.h>
 #include <EmbeddedFunctions.h>
@@ -26,11 +26,11 @@ using namespace System::Threading::Tasks;
 
 #define address "192.168.0.120 -d" // address of PLC
 
-int main() {//SHOULD BE EMPTY BEFORE ASSESSMENT WK11, CUZ THEY GON ASSESS THAT WE KNOW HOW TO INSTANTIATE CLASS etc.. (DONT FORGET TO REMEM)
+int main() {//DELETE THESE BEFORE ASSESSMENT
 	EmbeddedFunctions FuncObj; 
 	Galil myGalil(&FuncObj, address);
 
-
+	
 	//myGalil.DigitalOutput(257);	// TEST: bit 8 and 0 shud be 1 (tested)
 
 	//myGalil.DigitalByteOutput(1, 8);		// TEST: highbyte bits shud equal 8 while lowbyte unchanged (tested)
