@@ -52,8 +52,10 @@ int main() {//SHOULD BE EMPTY BEFORE ASSESSMENT WK11, CUZ THEY GON ASSESS THAT W
 	
 	//myGalil.AnalogOutput(0, 1.244); // TEST: Set Channel0 of analogOutput to 1.24V (tested)
 	
-	myGalil.WriteEncoder(); // TEST: Set ch0's enc. to 0
-	myGalil.ReadEncoder(); // TEST: Should return ch0's enc. posiion/value, previously set to 0 by WriteEncoder()
+	//myGalil.WriteEncoder(); // TEST: Set ch0's enc. to 0 (tested(for ch0 only) )
+	//myGalil.ReadEncoder(); // TEST: Should return ch0's enc. posiion/value, previously set to 0 by WriteEncoder() (tested(for ch0 only) )
+
+
 
 	Console::ReadKey(); 
 	return 0;

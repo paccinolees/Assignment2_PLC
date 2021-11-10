@@ -29,6 +29,11 @@ using namespace System::Threading::Tasks;
 
 Galil::Galil() // Default constructor. Initialize variables, open Galil connection and allocate memory.
 {
+	setPoint = 0;
+	ControlParameters[0] = 0;
+	ControlParameters[1] = 0;
+	ControlParameters[2] = 0;
+
 	GCStringIn default_address = "192.168.0.120 -d";
 	g = 0;
 	EmbeddedFunctions Funcs;
@@ -37,6 +42,11 @@ Galil::Galil() // Default constructor. Initialize variables, open Galil connecti
 } 
 Galil::Galil(EmbeddedFunctions* Funcs, GCStringIn address)	// Constructor with EmbeddedFunciton initialization
 {
+	setPoint = 0;
+	ControlParameters[0] = 0;
+	ControlParameters[1] = 0;
+	ControlParameters[2] = 0;
+
 	g = 0;
 	Functions = Funcs;
 	Functions->GOpen(address, &g);
@@ -198,7 +208,7 @@ int Galil::ReadEncoder()	// Read from Encoder
 	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
 
 	encoderValue = atoi(ReadBuffer);
-	printf("enc. Val:%d", encoderValue); //for testing purpose
+	//printf("enc. Val:%d", encoderValue); //for testing purpose
 	return encoderValue;
 }
 //-----------------------------------------------------//
