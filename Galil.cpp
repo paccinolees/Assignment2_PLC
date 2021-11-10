@@ -164,7 +164,7 @@ float Galil::AnalogInput(uint8_t channel)						// Read Analog channel and return
 	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
 
 	result = atof(ReadBuffer);
-	
+	std::cout << result << std::endl; //for testing purpose
 	return result;
 }
 
