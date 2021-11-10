@@ -30,9 +30,9 @@ using namespace System::Threading::Tasks;
 Galil::Galil() // Default constructor. Initialize variables, open Galil connection and allocate memory.
 {
 	setPoint = 0;
-	ControlParameters[0] = 0;
-	ControlParameters[1] = 0;
-	ControlParameters[2] = 0;
+	ControlParameters[0] = 0; //P
+	ControlParameters[1] = 0; //I
+	ControlParameters[2] = 0; //D
 
 	GCStringIn default_address = "192.168.0.120 -d";
 	g = 0;
@@ -43,9 +43,9 @@ Galil::Galil() // Default constructor. Initialize variables, open Galil connecti
 Galil::Galil(EmbeddedFunctions* Funcs, GCStringIn address)	// Constructor with EmbeddedFunciton initialization
 {
 	setPoint = 0;
-	ControlParameters[0] = 0;
-	ControlParameters[1] = 0;
-	ControlParameters[2] = 0;
+	ControlParameters[0] = 0; //P
+	ControlParameters[1] = 0; //I
+	ControlParameters[2] = 0; //D
 
 	g = 0;
 	Functions = Funcs;
@@ -211,6 +211,28 @@ int Galil::ReadEncoder()	// Read from Encoder
 	//printf("enc. Val:%d", encoderValue); //for testing purpose
 	return encoderValue;
 }
+
+void Galil::setSetPoint(int s)		// Set the desired setpoint for control loops, counts or counts/sec
+{
+	sprintf_s(command, "PS%d", s);
+	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
+	//NOTE TO SELF: didnt test cuz not sure what/how to test...
+}
+
+void Galil::setKp(double gain)		// Set the proportional gain of the controller used in controlLoop()
+{
+	ControlParameters[0] = gain;
+}
+void Galil::setKi(double gain)		// Set the integral gain of the controller used in controlLoop()
+{
+	ControlParameters[1] = gain;
+}
+void Galil::setKd(double gain)		// Set the derivative gain of the controller used in controlLoop()
+{
+	ControlParameters[2] = gain;
+}
+
+
 //-----------------------------------------------------//
 Galil::~Galil()
 {
