@@ -44,7 +44,6 @@ Galil::Galil(EmbeddedFunctions* Funcs, GCStringIn address)	// Constructor with E
 
 
 //-----------------DIGITAL OUTPUTS--------------------//
-
 void Galil::DigitalOutput(uint16_t value)	// Write to all 16 bits of digital output, 1 command to the Galil
 {
 	// Extract the high/low bytes
@@ -79,7 +78,6 @@ void Galil::DigitalBitOutput(bool val, uint8_t bit)		// Write single bit to digi
 
 
 //-----------------DIGITAL INPUTS--------------------//
-
 uint16_t Galil::DigitalInput()		// Return the 16 bits of input data Query the digital inputs of the GALIL, See Galil command library @IN
 {
 	uint16_t result = 0; // will store the 16bits value as decimal
@@ -137,7 +135,6 @@ bool Galil::DigitalBitInput(uint8_t bit)	// Read single bit from current digital
 	//printf("bitVal:%d", bitValue); //for testing purpose
 	return bitValue;
 }
-
 //-----------------------------------------------------//
 
 bool Galil::CheckSuccessfulWrite()	// Check the string response from the Galil to check that the last command executed correctly. 1 = succesful. NOT AUTOMARKED
@@ -157,10 +154,26 @@ bool Galil::CheckSuccessfulWrite()	// Check the string response from the Galil t
 	return check;
 }
 
+
+//-----------------ANALOG FUNCITONS--------------------//
+float Galil::AnalogInput(uint8_t channel)						// Read Analog channel and return voltage
+{
+	float result;
+
+	sprintf_s(command, "MG @AN[%d]", channel);
+	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
+
+	result = atof(ReadBuffer);
+	
+	return result;
+}
+
 void Galil::AnalogOutput(uint8_t channel, double voltage)		// Write to any channel of the Galil, send voltages as 2 decimal place in the command string
 {
-
+	sprintf_s(command, "AO%d,%.2f", channel, voltage);
+	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
 }
+//-----------------------------------------------------//
 
 int Galil::ReadEncoder()	// Read from Encoder
 {
