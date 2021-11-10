@@ -164,7 +164,7 @@ float Galil::AnalogInput(uint8_t channel)						// Read Analog channel and return
 	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
 
 	result = atof(ReadBuffer);
-	std::cout << result << std::endl; //for testing purpose
+	//std::cout << result << std::endl; //for testing purpose
 	return result;
 }
 
@@ -173,14 +173,35 @@ void Galil::AnalogOutput(uint8_t channel, double voltage)		// Write to any chann
 	sprintf_s(command, "AO%d,%.2f", channel, voltage);
 	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
 }
+
+void Galil::AnalogInputRange(uint8_t channel, uint8_t range)	// Configure the range of the input channel with the desired range code
+{
+	sprintf_s(command, "AQ%d,%d", channel, range);
+	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
+	//NOTE TO SELF: didnt test yet cuz not sure what/how to test...
+}
 //-----------------------------------------------------//
+
+
+//-----------------ENCODER/CONTROL FUNCTIONS--------------------//
+void Galil::WriteEncoder()		// Manually Set the encoder value to zero
+{
+	sprintf_s(command, "WE3"); // only set channel0's encoder to 0 (?)
+	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
+}
 
 int Galil::ReadEncoder()	// Read from Encoder
 {
+	int encoderValue;
 
-	return 0;
+	sprintf_s(command, "QE0");
+	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
+
+	encoderValue = atoi(ReadBuffer);
+	printf("enc. Val:%d", encoderValue); //for testing purpose
+	return encoderValue;
 }
-
+//-----------------------------------------------------//
 Galil::~Galil()
 {
 	if (g) {

@@ -48,10 +48,13 @@ int main() {//SHOULD BE EMPTY BEFORE ASSESSMENT WK11, CUZ THEY GON ASSESS THAT W
 	
 	//myGalil.CheckSuccessfulWrite(); // TEST: Should return ':' if previous command is correct, '?' if not (tested)
 
-	myGalil.AnalogInput(1);		// TEST: Return float value of a channel of analog input 
+	//myGalil.AnalogInput(1);		// TEST: Return float value of a channel of analog input (tested)
 	
-	myGalil.AnalogOutput(0, 1.244); // TEST: Set Channel0 of analogOutput to 1.24V
+	//myGalil.AnalogOutput(0, 1.244); // TEST: Set Channel0 of analogOutput to 1.24V (tested)
 	
+	myGalil.WriteEncoder(); // TEST: Set ch0's enc. to 0
+	myGalil.ReadEncoder(); // TEST: Should return ch0's enc. posiion/value, previously set to 0 by WriteEncoder()
+
 	Console::ReadKey(); 
 	return 0;
 };
