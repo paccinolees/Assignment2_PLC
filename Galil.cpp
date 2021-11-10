@@ -186,7 +186,7 @@ void Galil::AnalogInputRange(uint8_t channel, uint8_t range)	// Configure the ra
 //-----------------ENCODER/CONTROL FUNCTIONS--------------------//
 void Galil::WriteEncoder()		// Manually Set the encoder value to zero
 {
-	sprintf_s(command, "WE3"); // only set channel0's encoder to 0 (?)
+	sprintf_s(command, "WE0"); // only set channel0's(?) encoder position/value to 0
 	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
 }
 
@@ -194,7 +194,7 @@ int Galil::ReadEncoder()	// Read from Encoder
 {
 	int encoderValue;
 
-	sprintf_s(command, "QE0");
+	sprintf_s(command, "QE0"); // only read channel0's(?) encoder position/value 
 	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
 
 	encoderValue = atoi(ReadBuffer);
