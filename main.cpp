@@ -27,7 +27,7 @@ int main() {//DELETE THESE BEFORE ASSESSMENT
 	//myGalil.DigitalByteInput(1);	// TEST: Should return the 8bits value of highbyte if Digital Input (tested)
 	//myGalil.DigitalByteInput(0);	// TEST: Should return the 8bits value of lowbyte if Digital Input (tested)
 	
-	//myGalil.DigitalBitInput(17);		// TEST: Should return the 3rd bit value 1/0 (tested)
+	//myGalil.DigitalBitInput(3);		// TEST: Should return the 3rd bit value 1/0 (tested)
 	
 	//myGalil.CheckSuccessfulWrite(); // TEST: Should return ':' if previous command is correct, '?' if not (tested)
 
