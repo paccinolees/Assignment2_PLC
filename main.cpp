@@ -5,39 +5,100 @@
 #include <gclib_errors.h>
 #include <gclib_record.h>
 
+#include <conio.h>
+
 using namespace System;
+using namespace System::Threading;
 
 #define address "192.168.0.120 -d" // address of PLC
 
-int main() {//DELETE THESE BEFORE ASSESSMENT
+int main() {
 	EmbeddedFunctions FuncObj; 
 	Galil myGalil(&FuncObj, address);
 
+	//q1:
+	while (1) {
+		myGalil.DigitalOutput(0);
+
+		if (_kbhit()) {
+			myGalil.DigitalBitOutput(1, 0);
+			Thread::Sleep(100);
+			myGalil.DigitalBitOutput(0, 0);
+
+			myGalil.DigitalBitOutput(1, 1);
+			Thread::Sleep(100);
+			myGalil.DigitalBitOutput(0, 1);
+
+			myGalil.DigitalBitOutput(1, 2);
+			Thread::Sleep(100);
+			myGalil.DigitalBitOutput(0, 2);
+
+			myGalil.DigitalBitOutput(1, 3);
+			Thread::Sleep(100);
+			myGalil.DigitalBitOutput(0, 3);
+
+			myGalil.DigitalBitOutput(1, 4);
+			Thread::Sleep(100);
+			myGalil.DigitalBitOutput(0, 4);
+
+			myGalil.DigitalBitOutput(1, 5);
+			Thread::Sleep(100);
+			myGalil.DigitalBitOutput(0, 5);
+
+			myGalil.DigitalBitOutput(1, 6);
+			Thread::Sleep(100);
+			myGalil.DigitalBitOutput(0, 6);
+
+			myGalil.DigitalBitOutput(1, 7);
+			Thread::Sleep(100);
+			myGalil.DigitalBitOutput(0, 7);
+
+			myGalil.DigitalBitOutput(1, 8);
+			Thread::Sleep(100);
+			myGalil.DigitalBitOutput(0, 8);
+
+			myGalil.DigitalBitOutput(1, 9);
+			Thread::Sleep(100);
+			myGalil.DigitalBitOutput(0, 9);
+
+			myGalil.DigitalBitOutput(1, 10);
+			Thread::Sleep(100);
+			myGalil.DigitalBitOutput(0, 10);
+
+			myGalil.DigitalBitOutput(1, 11);
+			Thread::Sleep(100);
+			myGalil.DigitalBitOutput(0, 11);
+
+			myGalil.DigitalBitOutput(1, 12);
+			Thread::Sleep(100);
+			myGalil.DigitalBitOutput(0, 12);
+
+			myGalil.DigitalBitOutput(1, 13);
+			Thread::Sleep(100);
+			myGalil.DigitalBitOutput(0, 13);
+
+			myGalil.DigitalBitOutput(1, 14);
+			Thread::Sleep(100);
+			myGalil.DigitalBitOutput(0, 14);
+
+			myGalil.DigitalBitOutput(1, 15);
+			Thread::Sleep(100);
+			myGalil.DigitalBitOutput(0, 15);
+
+			_getch();
+		}
+	}
 	
-	myGalil.DigitalOutput(257);	// TEST: bit 8 and 0 shud be 1 (tested)
+	//Q2:
+	/*myGalil.DigitalOutput(0);
 
-	//myGalil.DigitalByteOutput(1, 8);		// TEST: highbyte bits shud equal 8 while lowbyte unchanged (tested)
-	//myGalil.DigitalByteOutput(0, 8);		// TEST: vice versa... (tested)
+	myGalil.AnalogOutput(0, 3);
 
-	//myGalil.DigitalBitOutput(1, 0);			// TEST: bit 0 becomes 1 (tested)
-	//myGalil.DigitalBitOutput(false, 0);		// TEST: bit 0 becomes 0 (tested)
-
-	//myGalil.DigitalInput();		// TEST: Should return the 16bits value of Digital Input to this function (tested)
-
-	//myGalil.DigitalByteInput(1);	// TEST: Should return the 8bits value of highbyte if Digital Input (tested)
-	//myGalil.DigitalByteInput(0);	// TEST: Should return the 8bits value of lowbyte if Digital Input (tested)
-	
-	//myGalil.DigitalBitInput(3);		// TEST: Should return the 3rd bit value 1/0 (tested)
-	
-	//myGalil.CheckSuccessfulWrite(); // TEST: Should return ':' if previous command is correct, '?' if not (tested)
-
-	//myGalil.AnalogInput(1);		// TEST: Return float value of a channel of analog input (tested)
-	
-	//myGalil.AnalogOutput(0, 1.244); // TEST: Set Channel0 of analogOutput to 1.24V (tested)
-	
-	//myGalil.WriteEncoder(); // TEST: Set ch0's enc. to 0 (tested(for ch0 only) )
-	//myGalil.ReadEncoder(); // TEST: Should return ch0's enc. posiion/value, previously set to 0 by WriteEncoder() (tested(for ch0 only) )
-
+	while (1) {
+		if (myGalil.ReadEncoder() == 0) {
+			myGalil.DigitalOutput(65535);
+		}
+	}*/
 
 
 	Console::ReadKey(); 
