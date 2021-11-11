@@ -17,7 +17,8 @@ int main() {
 	Galil myGalil(&FuncObj, address);
 
 	//q1:
-	while (1) {
+	int counter = 0;
+	while (counter < 30) {
 		myGalil.DigitalOutput(0);
 
 		if (_kbhit()) {
@@ -85,12 +86,12 @@ int main() {
 			Thread::Sleep(100);
 			myGalil.DigitalBitOutput(0, 15);
 
-			_getch();
+			counter += 1;	
 		}
 	}
 	
 	//Q2:
-	/*myGalil.DigitalOutput(0);
+	myGalil.DigitalOutput(0);
 
 	myGalil.AnalogOutput(0, 3);
 
@@ -98,7 +99,7 @@ int main() {
 		if (myGalil.ReadEncoder() == 0) {
 			myGalil.DigitalOutput(65535);
 		}
-	}*/
+	}
 
 
 	Console::ReadKey(); 
