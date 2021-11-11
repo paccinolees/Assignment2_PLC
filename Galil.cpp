@@ -60,9 +60,8 @@ void Galil::DigitalOutput(uint16_t value)	// Write to all 16 bits of digital out
 	uint8_t highByte = value >> 8;
 	uint8_t lowByte = value & 0xff;
 
-	// Generate the C-String command using stringstream
+	// Generate the C-String command
 	sprintf_s(command, "OP%d,%d", lowByte, highByte);
-	std::cout << command << std::endl; //for test
 	// Send command to Galil
 	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
 }
@@ -188,7 +187,6 @@ void Galil::AnalogInputRange(uint8_t channel, uint8_t range)	// Configure the ra
 {
 	sprintf_s(command, "AQ%d,%d", channel, range);
 	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
-	//NOTE TO SELF: didnt test yet cuz not sure what/how to test...
 }
 //-----------------------------------------------------//
 
@@ -216,7 +214,6 @@ void Galil::setSetPoint(int s)		// Set the desired setpoint for control loops, c
 {
 	sprintf_s(command, "PS%d", s);
 	Functions->GCommand(g, command, ReadBuffer, sizeof(ReadBuffer), 0);
-	//NOTE TO SELF: didnt test cuz not sure what/how to test...
 }
 
 void Galil::setKp(double gain)		// Set the proportional gain of the controller used in controlLoop()
@@ -231,10 +228,9 @@ void Galil::setKd(double gain)		// Set the derivative gain of the controller use
 {
 	ControlParameters[2] = gain;
 }
-
-
 //-----------------------------------------------------//
-Galil::~Galil()
+
+Galil::~Galil() // Destructor
 {
 	if (g) {
 		Functions->GClose(g);
